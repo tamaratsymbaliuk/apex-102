@@ -76,6 +76,29 @@ List<String> students = class2022.values();
 //check if Map has a key
 class2022.containsKey(1);
 
+//Map can store collection as its values
+Map<String,List<String>> students = new Map<String,List<String>>();
+
+/*First Challenge
+*/
+
+//articles for apex category
+List<String> apexArticles = new List<String>{'Apex Collections','Apex Methods'};
+
+//articles for Lightning category
+List<String> lightningArticles = new List<String>{'Aura framework','Lightning components'};
+
+//map to store the categories and article lists
+Map<String, List<String>> allArtielces = new Map<String,List<String>>();
+
+//insert apex articles
+allArtielces.put('Apex', apexArticles);
+
+//insert Lightning articles
+allArtielces.put('Lightning', lightningArticles);
+
+System.debug(allArticles);
+
 
     }
 }
