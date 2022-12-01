@@ -30,5 +30,21 @@ public with sharing class LogicalStatements {
             }
         }
 
+        //Use Math.mod() function to find remainder of a division
+
+        /* Challenge 2 - find a leap year
+        */
+
+       
+        Integer year = 2022;
+
+        if(Math.mod(year, 4) == 0  && Math.mod(year, 100) == 0 && Math.mod(year,400) == 0){
+            System.debug(year + ' is a leap year');
+        }else{
+            System.debug(year + ' not a leap year');
+        }
+
+
+
     }
 }
