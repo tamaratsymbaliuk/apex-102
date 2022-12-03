@@ -44,5 +44,76 @@ while(year <= 3000)
 }
 year++;
     }
+
+    //WHILE Loop challenge - FIBONACCI series
+
+    //print first 20 fibonacci numbers 0,1,1,2,3,5,8
+
+//current = previous + beforePrevious
+    Intger current;
+    Integer previous = 1;
+    Integer beforePrevious = 0;
+    Integer count = 0;
+
+    System.debug(beforePrevious);
+    System.debug(previous);
+
+    while(i < 18 ){
+
+
+        //calculate current number
+        current = beforePrevious + previous;
+
+        //print current value
+        System.debug(current);
+
+        //update beforePrevious with previous
+        beforePrevious = previous;
+
+        //update previous with current
+        previous = current;
+
+        i++;
+
+       
+    }
+
+
+    // FOR LOOP
+
+    for (Integer year = 2022; year <= 3000; year++) {
+        if(Math.mod(year, 4) == 0  && Math.mod(year, 100) == 0 && Math.mod(year,400) == 0){
+            System.debug(year + ' is a leap year');
+        }else{
+            System.debug(year + ' not a leap year');
+        }
+
+        
+    }
+
+    /*FOR loop challenge  - The Patter challenge
+    *
+    **
+    ***
+    ****
+    *****
+    */
+
+    Integer n = 5;
+
+    for(Integer row = 0; row < n; row++){
+        String pattern ='';
+        for(Integer column = 0; column <= row; column++){
+            pattern += '* ';
+        }
+        System.debug(pattern);
+    }
+
+
+
+
+
+
+
 }
 }
