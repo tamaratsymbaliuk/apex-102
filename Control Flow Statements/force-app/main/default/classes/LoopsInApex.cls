@@ -109,8 +109,29 @@ year++;
         System.debug(pattern);
     }
 
+    //break statement - come out of the loop instantly
 
 
+// continue statement - skips the current iteration of a loop
+
+List<String> days = new List<String>{'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'};
+
+for(Integer i = 0; i < days.size(); i++){
+    if(days.get(i) == 'Sunday'){
+        continue;
+    }
+    System.debug('Go to work, it is ' +days.get(i) );
+
+}
+
+//for each loop (List/Set Iteration for loop)
+
+List<Integer> numbers = new List<Integer> {1,2,3,4,5,6,7,8,9};
+
+for (Integer number : numbers) {
+    System.debug('Student # ' + number);
+    
+}
 
 
 
