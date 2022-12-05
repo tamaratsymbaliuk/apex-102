@@ -29,6 +29,10 @@ public with sharing class OOOPSinApex {
 
       */
 
+      /*
+      Apex naming convenstion - case insensitive vs Java case-sensitive; 
+      */
+
 
 
     }
