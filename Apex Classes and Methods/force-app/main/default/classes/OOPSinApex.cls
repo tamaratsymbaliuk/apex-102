@@ -33,6 +33,13 @@ public with sharing class OOOPSinApex {
       Apex naming convenstion - case insensitive vs Java case-sensitive; 
       */
 
+      //Constructor Class in APEX, see Covid 19 Class. Constructors are auto called when new instance/object is created.
+      //Ex: Covid19 case = new Covid19(); Constructors cannot rreturn anything as they are auto called.
+
+      //Initialization Block (see Covid19 class)
+
+      //Inner Class or Wraper Class (See Company Class)
+
 
 
     }
