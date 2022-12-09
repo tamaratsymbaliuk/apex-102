@@ -40,6 +40,33 @@ public with sharing class DML {
         Database.SaveResult[] srList = Database.insert(accList,false);
         //vs
         insert accList;
+//__________________________________
+
+//update record
+
+List<Account> accounts = [SELECT Id, Name, Phone FROM Account WHERE Name='Salesforce'];
+for(Account account : accounts){
+    account.Name = 'Academy';
+}
+update accounts;
+//or Database.update(accounts,false);
+
+//__________________________
+//delete and undelete records
+
+
+List<Account> accounts = [SELECT Id FROM Account WHERE Name LIKE 'Test Account%'];
+delete accounts;
+//or Database.delete(accounts);
+
+/*
+use ALL ROWS keyword to include deleted records in a query
+*/
+
+//get deleted account records
+List<Account> deletedAccounts = [SELECT Name, Phone FROM Account WHERE isDeleted=true ALL ROWS];
+//undelete these records
+undelete deletedAccounts;
 
     }
 }
