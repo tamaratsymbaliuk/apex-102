@@ -62,4 +62,15 @@ public with sharing class BulkificationChallenge {
         
         update accountToUpdate;
     }
+
+    /*now test out the method in open execute anonymous window
+
+    List<Id> accountIds = new List<Id>();
+
+    for(Account acc : [SELECT Id FROM Account]){
+        accountIds.add(acc.Id);
+    }
+
+    AccountController.updateAvgCaseResolutionDays(accountIds);
+    */
 }
