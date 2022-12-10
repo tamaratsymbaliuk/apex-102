@@ -46,7 +46,7 @@ public with sharing class BulkificationChallenge {
             //update case number again
             accountTotalCaseMap.put(caseObj.AccountId, totalCases);
             //get duration in days and add it to totalDays
-            Integer totalDays = acountTotalCaseDaysMap.get(caseObj.AccountId);
+            Integer totalDays = accountTotalCaseDaysMap.get(caseObj.AccountId);
             totalDays += caseObj.CreatedDate.date().daysBetween(caseObj.ClosedDate.date());
             //update total days again
             accountTotalCaseDaysMap.put(caseObj.AccountId, totalDays);
