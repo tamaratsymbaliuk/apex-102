@@ -5,8 +5,7 @@
       "default": true
     }
   ],
-  "name": "contact-tracing-controllers",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "55.0"
+  "sourceApiVersion": "48.0"
 }
