@@ -38,4 +38,21 @@ WHERE Name LIKE :searchTerm OR Pincode__c LIKE :searchTerm OR Address__c LIKE :s
     return null;
   
   }
+  /**
+   * Get count of locations in each status
+   * @return Map<String,Integer>
+   */
+  public static Map<String, Integer> getStatusCount(){
+  //query Location records to find Number of Locations in each Health Status
+  //build a Map<String,Integer> to map count of location with each status 
+  //return the map
+  Map<String,Integer> healthCountMap = new Map<String, Integer>();
+  for(AggregateResult result : [SELECT Status__c, Count(Id)total FROM Location__c GROUP BY Status__c ]){
+    healthCountMap.put(String.valueOf(result.get('Status__c')), Integer.valueOf(result.get('total')));
+  }
+  return healthCountMap;
+
+
+  
+}
 }
