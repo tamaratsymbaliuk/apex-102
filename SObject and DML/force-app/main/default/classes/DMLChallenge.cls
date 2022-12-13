@@ -7,7 +7,7 @@ public with sharing class DMLChallenge {
         //create an opp for this account with Stage=Qualification, Closed Date=Today
         Opportunity opp = new Opportunity(Name='Lord Of The Rings',StageName='Qualification',CloseDate=Date.today());
         insert opp;
-        opp.AccountId = account.Id;//or pass id directly
+        opp.AccountId = account.Id;// or pass  id directly
 
         //update account name 
         Account acc = [SELECT Id, Name FROM Account WHERE Name='WingNut Films' LIMIT 1];
@@ -25,7 +25,8 @@ public with sharing class DMLChallenge {
 
         //undelete the opp
         List<Opportunity> opp  = [SELECT Id, Name,StageName FROM Opportunity WHERE IsDeleted=true ALL ROWS];
-        undelete opp;
+        undelete opp; 
+
 
 
 
