@@ -27,18 +27,30 @@ public with sharing class ApexTrigger {
       size - the total number of records in a trigger invocation, both old and new
 
       operationType - return an enum corresponding to the current operation[BEFORE_INSERT,AFTER_INSERT ETC]
-
-
-
-
-
-
-      */
+ */
    
-
-    
-
-    /**
+  /**
      * Records (on which trigger is running ) are READ-ONLY in AFTER triggers. Salesforce best practice is to have one trigger per object
      */
+
+     /**
+      * BEFORE vs AFTER Trigger
+      Before triggers are used to update or validate record values before they've saved to Database;
+      Avoid making changes to other records in before triggers
+
+      Records that fire the After Trigger are READ-ONLY. Make changes (create/update/delete) to other records in after triggers
+      */
+
+      /**
+       * ON WHICH OBJECT YOU SHOULD WRITE A TRIGGER
+       * Contact has a checkbox "Active__c. The parent account of the contact myst show the number of active contacts in a number field
+       * called "Active_Contacts__c" (Trigger on Contact).
+       * Order has a picklist field to track the order status.when the status changes to delivered, update delivery date of OrderItems
+       * (Trigger on Order).
+       * We need to write a trigger on an object that is trigeering events, not on the one we need to update.
+       */
+
+       /**
+        * ORDER OF EXECUTION
+        */
 }
