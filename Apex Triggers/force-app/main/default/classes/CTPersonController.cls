@@ -73,5 +73,62 @@ Get count of people in each health status
     
 
      }
+     //using set to get unique ids
+     public static Set<Id> getCohabitants(Set<Id> personIds){
+         List<String> healthStatuses = new List<String>{'Green','Yellow'};
+         //adding or condition since same person can be on Person1 or Person2 field
+        List<People_Tracing__c> peopleTraces =  [SELECT Id, Person_1__c, Person_2__c FROM People_Tracing__c 
+                                                 WHERE (Person_1__c IN :personIds OR Person_2__c IN :personIds) 
+                                                 AND Contact_Type__c = 'Cohabitant'
+                                                 AND (Person_1__c.Health_Status__c IN :healthStatuses OR Person_2__c.Health_Status__c IN :healthStatuses)];
+        Set<Id> cohabitants = new Set<Id>();
+        for(People_Tracing__c pt : peopleTraces){
+            if(!personIds.contains(pt.Person_1__c)){
+                cohabitants.add(pt.Person_1__c);
+            }
+            if(!personIds.contains(pt.Person_2__c)){
+                cohabitants.add(pt.Person_2__c);
+            }
+         }
+         return cohabitants;
+     }
+
+     public static Set<Id> getNeighbours(Set<Id> personIds){
+        //adding or condition since same person can be on Person1 or Person2 field
+       List<People_Tracing__c> peopleTraces =  [SELECT Id, Person_1__c, Person_2__c FROM People_Tracing__c 
+                                                WHERE (Person_1__c IN :personIds OR Person_2__c IN :personIds) 
+                                                AND Contact_Type__c = 'Neighbour'
+                                                AND (Person_1__c.Health_Status__c = 'Green' OR Person_2__c.Health_Status__c = 'Green')];
+       Set<Id> neighbours = new Set<Id>();
+       for(People_Tracing__c pt : peopleTraces){
+           if(!personIds.contains(pt.Person_1__c)){
+               neighbours.add(pt.Person_1__c);
+           }
+           if(!personIds.contains(pt.Person_2__c)){
+               neighbours.add(pt.Person_2__c);
+           }
+        }
+        return neighbours;
+    }
+
+    public static Set<Id> getPrimaryContact(Set<Id> personIds){
+        List<String> healthStatuses = new List<String>{'Green','Yellow'};
+        //adding or condition since same person can be on Person1 or Person2 field
+       List<People_Tracing__c> peopleTraces =  [SELECT Id, Person_1__c, Person_2__c FROM People_Tracing__c 
+                                                WHERE (Person_1__c IN :personIds OR Person_2__c IN :personIds) 
+                                                AND Contact_Type__c = 'Other'
+                                                AND (Person_1__c.Health_Status__c IN :healthStatuses OR Person_2__c.Health_Status__c IN :healthStatuses)
+                                                AND Contact_Date__c = LAST_N_DAYS:10];//using binding variable to get more than one status
+       Set<Id> primaryContacts = new Set<Id>();
+       for(People_Tracing__c pt : peopleTraces){
+           if(!personIds.contains(pt.Person_1__c)){
+               primaryContacts.add(pt.Person_1__c);
+           }
+           if(!personIds.contains(pt.Person_2__c)){
+               primaryContacts.add(pt.Person_2__c);
+           }
+        }
+        return primaryContacts;
+    }
 
 }
