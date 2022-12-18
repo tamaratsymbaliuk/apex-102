@@ -108,8 +108,6 @@ public with sharing class CTLocationTracingController {
            
         }
         return duplicates;
-    
-    //5
         
                                                         
     
