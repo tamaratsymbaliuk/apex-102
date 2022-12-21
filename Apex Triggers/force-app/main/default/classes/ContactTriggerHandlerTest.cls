@@ -75,6 +75,7 @@ public with sharing class ContactTriggerHandlerTest {
         Test.startTest();
         update allContacts;
         Test.stopTest();
+
         List<Account> accs = [SELECT Id, Name, Active_Contacts__c FROM Account];
         System.assertEquals(2, accs.size());
         //looping since we do not know which account will come first(with active true or false), so we using the name field
@@ -105,6 +106,7 @@ public with sharing class ContactTriggerHandlerTest {
         Test.startTest();
         update allContacts;
         Test.stopTest();
+
         List<Account> accs = [SELECT Id, Name, Active_Contacts__c FROM Account];
         System.assertEquals(2, accs.size());
         //looping since we do not know which account will come first(with active true or false), so we using the name field
@@ -120,5 +122,52 @@ public with sharing class ContactTriggerHandlerTest {
         
         System.assertEquals(5, allContacts.size());
     }
+        @isTest
+    public static void afterDeleteHandlerTest() {
+        List<Contact> allContacts = [SELECT Id, LastName FROM Contact WHERE Name IN ('Test Contact 1', 'Test Contact 5')];
+
+        Test.startTest();
+        delete allContacts;
+        Test.stopTest();
+
+        List<Account> allAccounts = [SELECT Id, Name, Active_Contacts__c FROM Account];
+        System.assertEquals(2, allAccounts.size());
+        for (Account acc : allAccounts) {
+            if (acc.Name == 'Test 1') {
+                System.assertEquals(1, acc.Active_Contacts__c);
+            }
+            if (acc.Name == 'Test 2') {
+                System.assertEquals(0, acc.Active_Contacts__c);
+            }
+        }
+
+        allContacts = [SELECT Id, LastName FROM Contact];
+        System.assertEquals(3, allContacts.size());
+    }
+
+    @isTest
+    public static void afterUnDeleteHandlerTest() {
+        List<Contact> contactsToDelete = [SELECT Id, LastName FROM Contact WHERE Name IN ('Test Contact 1', 'Test Contact 5')];
+        delete contactsToDelete;
+
+        Test.startTest();
+        undelete contactsToDelete;
+        Test.stopTest();
+
+        List<Account> allAccounts = [SELECT Id, Name, Active_Contacts__c FROM Account];
+        System.assertEquals(2, allAccounts.size());
+        for (Account acc : allAccounts) {
+            if (acc.Name == 'Test 1') {
+                System.assertEquals(2, acc.Active_Contacts__c);
+            }
+            if (acc.Name == 'Test 2') {
+                System.assertEquals(0, acc.Active_Contacts__c);
+            }
+        }
+
+        List<Contact> allContacts = [SELECT Id, LastName FROM Contact];
+        System.assertEquals(5, allContacts.size());
+    }
+    }
    
-}
+
