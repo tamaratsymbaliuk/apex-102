@@ -3,7 +3,7 @@ public with sharing class ContactTriggerHandler {
         Set<Id> accountIds = new Set<Id>();
         for(Contact contact : newContacts){
             if(String.isNotBlank(contact.AccountId)){
-                //wrtite automation logic here
+                //write automation logic here
                 accountIds.add(contact.AccountId);
             }
         }
