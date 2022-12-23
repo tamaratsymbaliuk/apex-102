@@ -1,0 +1,6 @@
+<aura:component>
+<aura:attribute name="label" type="String" />
+<aura:attribute name="open" type="Boolean" />
+
+<!--Block tile containes-->
+</aura:component>	

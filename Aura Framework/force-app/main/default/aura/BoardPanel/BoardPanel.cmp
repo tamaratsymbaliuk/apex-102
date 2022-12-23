@@ -9,7 +9,7 @@
     <aura:attribute name="selectedMode" type="String" />
 
     <lightning:card title="Word Shuffle">
-    <lightning:layout horizontalAlign="center">
+    <lightning:layout horizontalAlign="center" multipleRows="true">
         <lightning:layoutItem padding="around-small">
             <lightning:combobox 
             name="gameMode" 
@@ -26,7 +26,17 @@
         <lightning:layoutItem padding="around-small">
             <lightning:button label="Reshuffle" title="Reshuffle" onclick="{!c.reshuffleBoard}" />
         </lightning:layoutItem>
+        <!--if selected mode not blank-->
+  <aura:if isTrue="{!(v.selectedMode != null)}"> 
+        <lightning:layoutItem size="12">
+              <!--Default namespace for all Salesforce orgs is c. Parent components can pass data to child components using public attributes-->
+            <c:Board mode="{!v.selectedMode}"></c:Board>
+        </lightning:layoutItem>
+     </aura:if>
     </lightning:layout>
-    Selected mode is : {!v.selectedMode}
+    <!--  Boud expression
+    <p>Selected mode is : {!v.selectedMode}</p>
+     Unboud expression
+    <p>Selected mode is : {#v.selectedMode}</p>-->
   </lightning:card>
 </aura:component>	

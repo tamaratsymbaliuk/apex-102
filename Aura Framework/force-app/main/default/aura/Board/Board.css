@@ -1,0 +1,10 @@
+.THIS.board {
+    background: #f7fafc;
+    position: relative;
+}
+
+.THIS .win-word{ 
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
