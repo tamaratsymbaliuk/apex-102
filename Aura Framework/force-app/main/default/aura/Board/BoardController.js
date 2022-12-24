@@ -26,5 +26,25 @@
      },
      doRender : function(component, event, helper) {
         console.log("Render completed");
+     },
+
+     blockClickHandler : function(component, event, helper){
+         // current click count ( + 1 because user clicked on a tile)
+         let clickCount = component.get("v.clickCount") + 1;
+         // get event value
+         const value = event.getParam("value");
+         //check if value is equals to winWord
+         if(value === component.get("v.winWord")){
+             // user has won
+             component.set("v.result", "YOU WIN");
+             console.log("you win");
+             helper.disableBoard(component);
+         }else if(clickCount === 3){
+             // user lose
+             component.set("v.result", "YOU LOSE");
+             console.log("you lose");
+             helper.disableBoard(component);
+         }
+         component.set("v.clickCount", clickCount);
      }
 })
