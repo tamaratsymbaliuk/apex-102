@@ -30,7 +30,7 @@
   <aura:if isTrue="{!(v.selectedMode != null)}"> 
         <lightning:layoutItem size="12">
               <!--Default namespace for all Salesforce orgs is c. Parent components can pass data to child components using public attributes-->
-            <c:Board mode="{!v.selectedMode}"></c:Board>
+            <c:Board aura:id="boardComp" mode="{!v.selectedMode}"></c:Board>
         </lightning:layoutItem>
      </aura:if>
     </lightning:layout>

@@ -23,6 +23,8 @@
         const winWord = helper.getWinWord(words);
         component.set("v.winWord", winWord);
         //console.log("Win word: " + helper.getWinWord(words))
+        // reset the board
+        helper.resetBoard(component);
      },
      doRender : function(component, event, helper) {
         console.log("Render completed");

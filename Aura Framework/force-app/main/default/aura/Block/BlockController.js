@@ -10,6 +10,11 @@
             compEvent.setParams({value : label });
             compEvent.fire();
         }
+    },
 
-    }
-})
+  scriptsLoaded: function (component, event, helper){
+      const divElement = component.getElement(".board-block"); //class of the dev tag we need
+      fitText(divElement);
+  }
+
+});

@@ -4,10 +4,17 @@
         let gameModeComboBox = component.find("gameMode");
 
         // access the value of combobox 
-       let selectedValue =  gameModeComboBox.get("v.value")
+       let selectedValue =  gameModeComboBox.get("v.value");
+
+       const selectedMode = component.get("v.selectedMode");
 
        // update selectedMode attribute
        component.set("v.selectedMode", selectedValue);
+       if(selectedMode){
+           const boardComp = component.find("boardComp");
+           // call aura method
+           boardComp.startGame();
+       }
        //console.log("The start new game button is clicked. The game mode is " + selectedValue);
        //alert("The start new game button is clicked. The game mode is " + selectedValue);
 
