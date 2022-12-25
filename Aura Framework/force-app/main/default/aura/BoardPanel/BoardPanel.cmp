@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForAllPageTypes">
+<aura:component implements="flexipage:availableForAllPageTypes" controller="BoardPanelController">
 
     <aura:attribute name="modes" type="List" default="[
     {'label': 'Easy', 'value': 'easy'},
@@ -7,6 +7,9 @@
     ]"/>
 
     <aura:attribute name="selectedMode" type="String" />
+    <aura:attribute name="reshuffleDisabled" type="Boolean" default="true" />
+
+    <aura:handler event="c:ResultApplicationEvent" action="{!c.onResultHandler}" />
 
     <lightning:card title="Word Shuffle">
     <lightning:layout horizontalAlign="center" multipleRows="true">
@@ -24,7 +27,7 @@
             <lightning:button aura:id="startNewGameButton" variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}" />
         </lightning:layoutItem>
         <lightning:layoutItem padding="around-small">
-            <lightning:button label="Reshuffle" title="Reshuffle" onclick="{!c.reshuffleBoard}" />
+            <lightning:button label="Reshuffle" title="Reshuffle" disabled="{!v.reshuffleDisabled}" onclick="{!c.reshuffleBoard}" />
         </lightning:layoutItem>
         <!--if selected mode not blank-->
   <aura:if isTrue="{!(v.selectedMode != null)}"> 

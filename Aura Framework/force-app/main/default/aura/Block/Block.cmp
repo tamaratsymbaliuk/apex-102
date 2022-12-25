@@ -2,7 +2,7 @@
 <aura:attribute name="label" type="String" />
 <aura:attribute name="open" type="Boolean" default="false" />
 
-// loaded static resource FitText from the org to fit text
+<!-- loaded static resource FitText from the org to fit text -->
 <ltng:require scripts="{!$Resource.FitText}" afterScriptsLoaded="{!c.scriptsLoaded}" />
 
 <!--Register the block click event-->

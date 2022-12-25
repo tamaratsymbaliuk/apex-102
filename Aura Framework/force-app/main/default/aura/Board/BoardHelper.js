@@ -107,8 +107,12 @@
     ];
     // Randomize the words array
     wordsArray = this.randomizeArray(wordsArray);
+    // open= false property
+    const wordObjArray = wordsArray.map( element =>{
+        return {word : element, open : false};
+    })
     // return requested words
-    return wordsArray.slice(0, count); //method that returns a shallow copy of a portion of an array into a new array object selected from start to end
+    return wordObjArray.slice(0, count); //method that returns a shallow copy of a portion of an array into a new array object selected from start to end
 },
 
 randomizeArray: function (arr) {
@@ -125,7 +129,7 @@ randomizeArray: function (arr) {
 
   getWinWord : function (arr){
       const randomIndex = Math.floor(Math.random() * arr.length);
-      return arr[randomIndex];
+      return arr[randomIndex].word;
   },
 
   disableBoard : function(component){
@@ -142,5 +146,10 @@ randomizeArray: function (arr) {
       component.set("v.clickCount", 0);
       // reset the result
       component.set("v.result", "");
+  },
+  fireResultEvent : function(resultValue) {
+      const appevent = $A.get("e.c:ResultApplicationEvent"); //e(event), c(salesforce namespace), for managed packages use custom namespace
+      appevent.setParams({result: resultValue});
+      appevent.fire();
   },
 });
