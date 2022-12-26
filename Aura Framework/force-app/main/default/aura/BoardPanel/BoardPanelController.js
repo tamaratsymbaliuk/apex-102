@@ -25,13 +25,15 @@
         boardComp.reshuffleBoard();
         component.set("v.reshuffleDisabled", true);
      },
-
+      // method that tells if user won or lost
      onResultHandler : function(component, event, helper) {
          const result = event.getParam("result");
          if (result === "win"){
              component.set("v.reshuffleDisabled", true);
+             helper.showToast("You are the winner", "Hooray!", "success");
          }else{
             component.set("v.reshuffleDisabled", false);
+            helper.showToast("You lost", "Reshuffle the board to keep playing", "error");
          }
          helper.addResultRecord(component, result);
          
